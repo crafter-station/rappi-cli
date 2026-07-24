@@ -13,7 +13,7 @@ const currentVersion = JSON.parse(readFileSync(pkgPath, "utf-8")).version;
 const skipUpdateCheck = !command || command === "mcp" || command === "server";
 const updateCheck = skipUpdateCheck
   ? Promise.resolve()
-  : fetch("https://registry.npmjs.org/rappi-cli/latest", {
+  : fetch("https://registry.npmjs.org/@crafter%2frappi-cli/latest", {
       signal: AbortSignal.timeout(2000),
     })
       .then((r) => r.json())
@@ -23,7 +23,7 @@ const updateCheck = skipUpdateCheck
           console.log(
             `\n  ${orange.bold("Update available:")} ${chalk.dim(currentVersion)} ${chalk.dim("\u2192")} ${orange(data.version)}`
           );
-          console.log(`  Run ${chalk.cyan("npm install -g rappi-cli@latest")} to update\n`);
+          console.log(`  Run ${chalk.cyan("npm install -g @crafter/rappi-cli@latest")} to update\n`);
         }
       })
       .catch(() => {});
