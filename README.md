@@ -153,6 +153,12 @@ index.ts             → CLI entry point
 server.ts            → API server entry point
 ```
 
+## Security
+
+- Auth tokens and location live in `.rappi-config.json` (gitignored). Never commit that file or share tokens in issues/PRs.
+- Run `bun run audit` after install to review dependency advisories.
+- See [SECURITY.md](./SECURITY.md) for how to report vulnerabilities.
+
 ## Tech Stack
 
 - [Bun](https://bun.sh) — Runtime

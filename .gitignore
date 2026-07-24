@@ -39,3 +39,8 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # MCP config (local paths)
 .mcp.json
 package-lock.json
+
+# Local agent / analysis caches (do not commit)
+.atl/
+.codegraph/
+openspec/

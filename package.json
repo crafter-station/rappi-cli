@@ -47,7 +47,8 @@
     "login": "bun run src/commands/login.ts",
     "addresses": "bun run src/commands/addresses.ts",
     "server": "bun run server.ts",
-    "mcp": "bun run src/mcp/index.ts"
+    "mcp": "bun run src/mcp/index.ts",
+    "audit": "bun audit"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -57,12 +58,15 @@
   },
   "dependencies": {
     "@hono/zod-validator": "^0.7.6",
-    "@modelcontextprotocol/sdk": "^1.28.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "chalk": "^5.6.2",
     "cli-table3": "^0.6.5",
-    "hono": "^4.12.9",
+    "hono": "^4.12.31",
     "ora": "^9.3.0",
     "zod": "^4.3.6"
+  },
+  "overrides": {
+    "@hono/node-server": "2.0.11"
   },
   "optionalDependencies": {
     "playwright": "^1.58.2"
