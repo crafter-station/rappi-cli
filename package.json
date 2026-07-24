@@ -1,12 +1,15 @@
 {
-  "name": "rappi-cli",
+  "name": "@crafter/rappi-cli",
   "version": "0.0.6",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Order from Rappi via terminal, REST API, or MCP server for Claude",
   "author": "Cristian Correa",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/camilocbarrera/rappi-cli"
+    "url": "git+https://github.com/camilocbarrera/rappi-cli.git"
   },
   "keywords": [
     "rappi",
