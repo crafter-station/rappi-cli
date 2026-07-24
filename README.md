@@ -6,7 +6,7 @@
 ██   ██ ██   ██ ██      ██      ███████         ███████ ███████ ███████
 ```
 
-[![npm version](https://img.shields.io/npm/v/rappi-cli.svg)](https://www.npmjs.com/package/rappi-cli)
+[![npm version](https://img.shields.io/npm/v/%40crafter%2Frappi-cli.svg)](https://www.npmjs.com/package/@crafter/rappi-cli)
 [![GitHub](https://img.shields.io/github/stars/camilocbarrera/rappi-cli.svg?style=social)](https://github.com/camilocbarrera/rappi-cli)
 
 Order from [Rappi](https://www.rappi.com.co/) directly from the terminal, via REST API, or as an MCP server for Claude. Built with Bun, TypeScript, Zod, and Hono.
@@ -15,7 +15,7 @@ Order from [Rappi](https://www.rappi.com.co/) directly from the terminal, via RE
 
 ```bash
 # From npm (requires Bun)
-bun add -g rappi-cli
+bun add -g @crafter/rappi-cli
 
 # Or clone and link
 git clone https://github.com/camilocbarrera/rappi-cli.git
