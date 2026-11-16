@@ -11,7 +11,7 @@ import { getStoreDetail, getRestaurantCatalog } from "../services/store";
 import { getProductToppings } from "../services/product";
 import { addToCart, removeFromCart, getCarts, recalculateCart, resolveStoreType } from "../services/cart";
 import { getCheckoutDetail, setTip } from "../services/checkout";
-import { placeOrder, getOrders } from "../services/order";
+import { placeOrder, getOrders, isPaymentUnconfirmed, PAYMENT_UNCONFIRMED_WARNING } from "../services/order";
 import { DEFAULT_STORE_TYPE } from "../constants";
 
 const server = new McpServer({
@@ -289,13 +289,15 @@ server.tool(
 
 server.tool(
   "place_order",
-  "Place the order. ALWAYS call checkout_preview first and get explicit user confirmation before calling this. store_type auto-resolves (e.g. turbo → restaurant).",
+  "Place the order. ALWAYS call checkout_preview first and get explicit user confirmation before calling this. store_type auto-resolves (e.g. turbo → restaurant). A created order does not mean the card was charged: if the result starts with a payment warning, tell the user to confirm payment in the Rappi app.",
   { store_type: z.string().optional().default(DEFAULT_STORE_TYPE).describe("Store type from get_cart (auto-resolves turbo → restaurant)") },
   async ({ store_type }) => {
     const config = await loadConfig();
     const resolved = await resolveStoreType(store_type, config);
     const result = await placeOrder(resolved, config);
-    return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+    const json = JSON.stringify(result, null, 2);
+    const text = isPaymentUnconfirmed(result) ? `${PAYMENT_UNCONFIRMED_WARNING}\n\n${json}` : json;
+    return { content: [{ type: "text", text }] };
   }
 );
 

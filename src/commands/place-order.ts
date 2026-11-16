@@ -1,6 +1,6 @@
 import { loadConfig } from "../config";
 import { recalculateCart, resolveStoreType } from "../services/cart";
-import { placeOrder } from "../services/order";
+import { placeOrder, isPaymentUnconfirmed, PAYMENT_UNCONFIRMED_WARNING } from "../services/order";
 import { withSpinner, ok, fail, rappiOrangeBold, dim, bold, warn } from "../ui";
 
 const storeType = process.argv[2] || "restaurant";
@@ -36,6 +36,9 @@ for (const store of cart.stores) {
 try {
   const result = await withSpinner("Placing order...", () => placeOrder(resolved, config));
   console.log(`\n${ok("Order placed!")}`);
+  if (isPaymentUnconfirmed(result)) {
+    console.log(`${warn(PAYMENT_UNCONFIRMED_WARNING)}`);
+  }
   console.log(`\n  ${dim(JSON.stringify(result, null, 2))}\n`);
 } catch (err: any) {
   const message = err.message;
